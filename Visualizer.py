@@ -4,6 +4,7 @@ import time
 
 
 bars = [x for x in range(200) if x % 10 == 0]
+updateTime = .1
 
 
 def shuffle():
@@ -44,7 +45,7 @@ def heapify(shuffled, n, i):
         shuffled[i][1], shuffled[largest][1] = shuffled[largest][1], shuffled[i][1]
         swap(shuffled, shuffled[i], shuffled[largest])
         root.update_idletasks()
-        time.sleep(.1)
+        time.sleep(updateTime)
         heapify(shuffled, n, largest)
 
 
@@ -75,7 +76,7 @@ def partition(shuffled, low, high):
             shuffled[j] = canvas.create_rectangle(
                 shuffled.index(shuffled[j]) * 10, 200, shuffled.index(shuffled[j]) * 10 + 10, shuffled[j][1], fill='#00FF00'), shuffled[j][1]
             root.update_idletasks()
-            time.sleep(.1)
+            time.sleep(updateTime)
     shuffled[i +
              1], shuffled[high] = list(shuffled[i + 1]), list(shuffled[high])
     shuffled[i + 1][1], shuffled[high][1] = shuffled[high][1], shuffled[i + 1][1]
@@ -86,7 +87,7 @@ def partition(shuffled, low, high):
     shuffled[high] = canvas.create_rectangle(
         shuffled.index(shuffled[high]) * 10, 200, shuffled.index(shuffled[high]) * 10 + 10, shuffled[high][1], fill='#00FF00'), shuffled[high][1]
     root.update_idletasks()
-    time.sleep(.1)
+    time.sleep(updateTime)
     return i + 1
 
 
@@ -113,7 +114,7 @@ def bubble_sort(shuffled):
                 shuffled[j + 1] = canvas.create_rectangle(
                     shuffled.index(shuffled[j + 1]) * 10, 200, shuffled.index(shuffled[j + 1]) * 10 + 10, shuffled[j + 1][1], fill='#00FF00'), shuffled[j + 1][1]
                 root.update_idletasks()
-                time.sleep(.1)
+                time.sleep(updateTime)
 
 
 def selection_sort(shuffled):
@@ -132,7 +133,7 @@ def selection_sort(shuffled):
         shuffled[min_idx] = canvas.create_rectangle(
             shuffled.index(shuffled[min_idx]) * 10, 200, shuffled.index(shuffled[min_idx]) * 10 + 10, shuffled[min_idx][1], fill='#00FF00'), shuffled[min_idx][1]
         root.update_idletasks()
-        time.sleep(.1)
+        time.sleep(updateTime)
 
 
 root = tk.Tk()
