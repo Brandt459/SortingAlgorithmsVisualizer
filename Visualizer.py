@@ -2,8 +2,8 @@ import tkinter as tk
 import random
 import time
 
-
-bars = [x for x in range(200) if x % 10 == 0]
+numberOfBars = 30
+bars = [x for x in range(0, numberOfBars * 10, 10)]
 updateTime = .1
 
 
@@ -15,7 +15,7 @@ def shuffle():
     j = 0
     for i in shuffled:
         rectangles.append(canvas.create_rectangle(
-            j, 200, j + 10, i, fill='#00FF00'))
+            j, numberOfBars * 10, j + 10, i, fill='#00FF00'))
         j += 10
     global zipped
     zipped = list(zip(rectangles, bars))
@@ -26,9 +26,9 @@ def swap(shuffled, l1, l2):
     i1 = shuffled.index(l1)
     i2 = shuffled.index(l2)
     shuffled[i1] = canvas.create_rectangle(
-        i1 * 10, 200, i1 * 10 + 10, l1[1], fill='#00FF00'), l1[1]
+        i1 * 10, numberOfBars * 10, i1 * 10 + 10, l1[1], fill='#00FF00'), l1[1]
     shuffled[i2] = canvas.create_rectangle(
-        i2 * 10, 200, i2 * 10 + 10, l2[1], fill='#00FF00'), l2[1]
+        i2 * 10, numberOfBars * 10, i2 * 10 + 10, l2[1], fill='#00FF00'), l2[1]
 
 
 def heapify(shuffled, n, i):
@@ -71,10 +71,10 @@ def partition(shuffled, low, high):
             shuffled[i][1], shuffled[j][1] = shuffled[j][1], shuffled[i][1]
             canvas.delete(shuffled[i][0])
             shuffled[i] = canvas.create_rectangle(
-                shuffled.index(shuffled[i]) * 10, 200, shuffled.index(shuffled[i]) * 10 + 10, shuffled[i][1], fill='#00FF00'), shuffled[i][1]
+                shuffled.index(shuffled[i]) * 10, numberOfBars * 10, shuffled.index(shuffled[i]) * 10 + 10, shuffled[i][1], fill='#00FF00'), shuffled[i][1]
             canvas.delete(shuffled[j][0])
             shuffled[j] = canvas.create_rectangle(
-                shuffled.index(shuffled[j]) * 10, 200, shuffled.index(shuffled[j]) * 10 + 10, shuffled[j][1], fill='#00FF00'), shuffled[j][1]
+                shuffled.index(shuffled[j]) * 10, numberOfBars * 10, shuffled.index(shuffled[j]) * 10 + 10, shuffled[j][1], fill='#00FF00'), shuffled[j][1]
             root.update_idletasks()
             time.sleep(updateTime)
     shuffled[i +
@@ -83,9 +83,9 @@ def partition(shuffled, low, high):
     canvas.delete(shuffled[i + 1][0])
     canvas.delete(shuffled[high][0])
     shuffled[i + 1] = canvas.create_rectangle(
-        shuffled.index(shuffled[i + 1]) * 10, 200, shuffled.index(shuffled[i + 1]) * 10 + 10, shuffled[i + 1][1], fill='#00FF00'), shuffled[i + 1][1]
+        shuffled.index(shuffled[i + 1]) * 10, numberOfBars * 10, shuffled.index(shuffled[i + 1]) * 10 + 10, shuffled[i + 1][1], fill='#00FF00'), shuffled[i + 1][1]
     shuffled[high] = canvas.create_rectangle(
-        shuffled.index(shuffled[high]) * 10, 200, shuffled.index(shuffled[high]) * 10 + 10, shuffled[high][1], fill='#00FF00'), shuffled[high][1]
+        shuffled.index(shuffled[high]) * 10, numberOfBars * 10, shuffled.index(shuffled[high]) * 10 + 10, shuffled[high][1], fill='#00FF00'), shuffled[high][1]
     root.update_idletasks()
     time.sleep(updateTime)
     return i + 1
@@ -109,10 +109,10 @@ def bubble_sort(shuffled):
                                          1][1] = shuffled[j + 1][1], shuffled[j][1]
                 canvas.delete(shuffled[j][0])
                 shuffled[j] = canvas.create_rectangle(
-                    shuffled.index(shuffled[j]) * 10, 200, shuffled.index(shuffled[j]) * 10 + 10, shuffled[j][1], fill='#00FF00'), shuffled[j][1]
+                    shuffled.index(shuffled[j]) * 10, numberOfBars * 10, shuffled.index(shuffled[j]) * 10 + 10, shuffled[j][1], fill='#00FF00'), shuffled[j][1]
                 canvas.delete(shuffled[j + 1][0])
                 shuffled[j + 1] = canvas.create_rectangle(
-                    shuffled.index(shuffled[j + 1]) * 10, 200, shuffled.index(shuffled[j + 1]) * 10 + 10, shuffled[j + 1][1], fill='#00FF00'), shuffled[j + 1][1]
+                    shuffled.index(shuffled[j + 1]) * 10, numberOfBars * 10, shuffled.index(shuffled[j + 1]) * 10 + 10, shuffled[j + 1][1], fill='#00FF00'), shuffled[j + 1][1]
                 root.update_idletasks()
                 time.sleep(updateTime)
 
@@ -128,10 +128,10 @@ def selection_sort(shuffled):
         shuffled[i][1], shuffled[min_idx][1] = shuffled[min_idx][1], shuffled[i][1]
         canvas.delete(shuffled[i][0])
         shuffled[i] = canvas.create_rectangle(
-            shuffled.index(shuffled[i]) * 10, 200, shuffled.index(shuffled[i]) * 10 + 10, shuffled[i][1], fill='#00FF00'), shuffled[i][1]
+            shuffled.index(shuffled[i]) * 10, numberOfBars * 10, shuffled.index(shuffled[i]) * 10 + 10, shuffled[i][1], fill='#00FF00'), shuffled[i][1]
         canvas.delete(shuffled[min_idx][0])
         shuffled[min_idx] = canvas.create_rectangle(
-            shuffled.index(shuffled[min_idx]) * 10, 200, shuffled.index(shuffled[min_idx]) * 10 + 10, shuffled[min_idx][1], fill='#00FF00'), shuffled[min_idx][1]
+            shuffled.index(shuffled[min_idx]) * 10, numberOfBars * 10, shuffled.index(shuffled[min_idx]) * 10 + 10, shuffled[min_idx][1], fill='#00FF00'), shuffled[min_idx][1]
         root.update_idletasks()
         time.sleep(updateTime)
 
@@ -140,7 +140,7 @@ root = tk.Tk()
 
 blues = tk.Frame()
 blues.grid(row=0, column=0, columnspan=6, padx=10, pady=10)
-canvas = tk.Canvas(blues, width=500, height=200)
+canvas = tk.Canvas(blues, width=500, height=numberOfBars * 10)
 shuffle()
 canvas.pack(fill=tk.BOTH, expand=1)
 
