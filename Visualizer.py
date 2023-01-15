@@ -4,7 +4,7 @@ import time
 
 numberOfBars = 30
 bars = [x for x in range(0, numberOfBars * 10, 10)]
-updateTime = .05
+updateTime = 0.05
 
 
 def drawRectangle(x0, y0, x1, y1):
@@ -90,7 +90,14 @@ def selection_sort(shuffled):
         swap(shuffled, shuffled[i], shuffled[min_idx])
 
 
+def sliderHandle(event):
+    global updateTime
+    updateTime = updateTimeSlide.get() / 10000
+
+
 root = tk.Tk()
+
+updateTimeSlide = tk.DoubleVar()
 
 blues = tk.Frame()
 blues.grid(row=0, column=0, columnspan=6, padx=10, pady=10)
@@ -100,10 +107,12 @@ canvas.pack(fill=tk.BOTH, expand=1)
 
 tk.Button(root, text='Heap Sort', command=lambda: heap_sort(shuffledBars), width=20, height=5).grid(row=1, column=0)
 tk.Button(root, text='Quick Sort', command=lambda: quick_sort(shuffledBars, 0, len(shuffledBars) - 1), width=20, height=5).grid(row=1, column=1)
-tk.Button(root, text='Shuffle', command=shuffle, width=20, height=5).grid(row=1, column=3)
+tk.Button(root, text='Shuffle', command=shuffle, width=20, height=5).grid(row=1, column=2)
 tk.Button(root, text='Bubble Sort', command=lambda: bubble_sort(shuffledBars), width=20, height=5).grid(row=2, column=0, pady=10)
 tk.Button(root, text='Selection Sort', command=lambda: selection_sort(shuffledBars), width=20, height=5).grid(row=2, column=1, pady=10)
+tk.Label(root, text='Lower number = faster update').grid(row=3, column=2)
+tk.Scale(root, from_=1000, to=1, orient='horizontal', variable=updateTimeSlide, command=sliderHandle).grid(row=2, column=2, pady=10)
 
-root.geometry('500x420+300+300')
+root.geometry('580x550+300+300')
 root.title('Sorting Algorithms')
 root.mainloop()
